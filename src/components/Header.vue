@@ -11,10 +11,10 @@
       </div>
       <div class="menu" :class="{ active: menuActive }">
         <ul class="grid">
-          <li><a href="#banner">Início</a></li>
-          <li><a href="#about">Sobre</a></li>
-          <li><a href="#services">Serviços</a></li>
-          <li><a href="#contact">Contato</a></li>
+          <li><a href="#banner" @click="handleMenuClick">Início</a></li>
+          <li><a href="#about" @click="handleMenuClick">Sobre</a></li>
+          <li><a href="#services" @click="handleMenuClick">Serviços</a></li>
+          <li><a href="#contact" @click="handleMenuClick">Contato</a></li>
         </ul>
       </div>
     </nav>
@@ -22,23 +22,29 @@
 </template>
 
 <script>
-import Menu from 'vue-material-design-icons/Menu.vue'
+import Menu from "vue-material-design-icons/Menu.vue";
 
 export default {
-  name: 'Header',
+  name: "Header",
   components: {
-    Menu
+    Menu,
   },
   data() {
     return {
-      menuActive: false
+      menuActive: false,
     };
   },
   methods: {
     toggleMenu() {
       this.menuActive = !this.menuActive;
+    },
+    handleMenuClick() {
+    if (window.innerWidth <= 768) {
+      this.menuActive = false;
     }
-  }
+  },
+  },
+  
 };
 </script>
 
@@ -52,14 +58,13 @@ export default {
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 0.8rem;
- 
 }
 
 .container {
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 0 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6rem;
 }
 
 .container_menu {
@@ -106,6 +111,16 @@ export default {
   height: 20vh;
   background: #fff;
   justify-content: center;
+}
+
+.close-menu {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
