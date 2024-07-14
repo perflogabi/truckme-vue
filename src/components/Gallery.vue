@@ -4,8 +4,8 @@
     <div class="gallery-container">
       <img :src="currentImage" :alt="'Image ' + (currentIndex + 1)" />
       <div class="btn_next_prev">
-        <ArrowLeft />
-        <ArrowRight />
+        <ArrowLeft @click="prevImage" />
+        <ArrowRight @click="nextImage" />
       </div>
     </div>
   </section>
@@ -34,6 +34,15 @@ export default {
     computed: {
     currentImage() {
       return this.images[this.currentIndex];
+    },
+  },
+  methods: {
+    prevImage() {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.images.length) % this.images.length;
+    },
+    nextImage() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
     },
   },
 
